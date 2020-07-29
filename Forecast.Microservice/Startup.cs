@@ -20,9 +20,12 @@ namespace Forecast.Microservice
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("DefaultConnection"),
-                   b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+             options.UseSqlServer(
+                 Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //   options.UseSqlServer(
+            //       Configuration.GetConnectionString("DefaultConnection"),
+            //       b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             #region Swagger
 
